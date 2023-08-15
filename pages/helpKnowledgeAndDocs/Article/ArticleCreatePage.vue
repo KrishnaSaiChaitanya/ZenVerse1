@@ -40,7 +40,7 @@
               </ul>
 
               <div>
-                <Document v-if="activeTab === 'document'" ref="documentComp" @value="getValue1" />
+                <!-- <Document v-if="activeTab === 'document'" ref="documentComp" @value="getValue1" /> -->
                 <Block v-if="activeTab === 'block'" />
               </div>
             </CardBox>
@@ -67,7 +67,7 @@ import PremFormField from "@/components/Forms/FormField.vue";
 import PremFormControl from "@/components/Forms/FormControl.vue";
 import FormCheckRadio from "@/components/Forms/FormCheckRadio.vue";
 import SelectDropdown from "/components/helpKnowledgeAndDocs/SelectDropdown.vue";
-import Document from "@/components/HelpKnowledgeAndDocs/Document.vue";
+// import Document from "@/components/HelpKnowledgeAndDocs/Document.vue";
 import Block from "@/components/HelpKnowledgeAndDocs/Block.vue";
 import ArticleEditor from "@/components/HelpKnowledgeAndDocs/ArticleEditor.vue";
 

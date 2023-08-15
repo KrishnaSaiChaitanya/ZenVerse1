@@ -45,6 +45,42 @@ import { Categories } from '~/src/models';
 const categories = ref([]);
 const category = ref('')
 
+// Amplify Hub Start
+
+import { Hub } from 'aws-amplify';
+
+const handleDataStoreReady = () => {
+  console.log('DataStore is ready. Perform actions here.');
+};
+const setupDataStoreListener = () => {
+  const listener = Hub.listen('datastore', hubData => {
+    const { event, data } = hubData.payload;
+    if (event === 'ready') {
+      handleDataStoreReady();
+      FetchCategories()
+    }
+  });
+  // Clean up the listener when the component is about to be unmounted
+  onBeforeUnmount(() => {
+    listener();
+  });
+};
+// Set up the listener on component mount
+onMounted(() => {
+  setupDataStoreListener();
+});
+
+// Amplify Hub ending
+
+const FetchCategories = async() => {
+  try {
+    const fetchedCategories = await fetchCategories();
+    categories.value = fetchedCategories;
+    console.log("Categories fetched Successfully", categories);
+  } catch (error) {
+    console.error('Error fetching categories:', error);
+  }
+}
 onMounted(async () => {
   try {
     const fetchedCategories = await fetchCategories();
